@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#130b20">
+  <meta name="description" content="A spooky, animated Roblox Halloween reward guide.">
+  <title>Roblox Halloween Reward Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#100a1b;--panel:#1c1229;--orange:#ff7a18;--gold:#ffc15a;--purple:#a76bff;--text:#fff8ef;--muted:#c6b8d6}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(ellipse at 50% -15%,#42204d 0,transparent 50%),var(--bg);color:var(--text);font-family:Nunito,system-ui,sans-serif;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,#000,transparent 80%);z-index:-1}
+    .topbar{display:flex;justify-content:center;gap:9px;align-items:center;padding:13px;color:#ffd9ad;font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;font-weight:900}
+    .topbar .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px var(--orange);animation:pulse 1.8s infinite}
+    header{text-align:center;padding:36px 18px 22px;max-width:1000px;margin:auto;animation:rise .8s both}
+    .eyebrow{display:inline-block;border:1px solid #70418b;background:#281737;padding:7px 13px;border-radius:999px;color:#e0bdff;font-size:.76rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+    h1{font-family:Creepster,Georgia,cursive;font-size:clamp(3rem,8vw,6.4rem);font-weight:400;line-height:.98;letter-spacing:.015em;margin:20px 0 13px;color:#ff9b38;text-shadow:0 3px 0 #8d350e,0 0 25px #ff721b55;animation:flicker 5s infinite}
+    .intro{color:var(--muted);max-width:620px;margin:0 auto;line-height:1.7}
+    .banner-wrap{width:min(100% - 32px,1050px);margin:22px auto 45px;position:relative;animation:rise .9s .1s both}
+    .banner{min-height:250px;height:clamp(250px,38vw,410px);border-radius:25px;overflow:hidden;position:relative;border:1px solid #69416e;box-shadow:0 22px 65px #0007;background:linear-gradient(0deg,#170b26 0%,#170b2670 45%,#170b2633),url('https://images.unsplash.com/photo-1509557965875-b88c97052f0e?auto=format&fit=crop&w=1800&q=85') center 48%/cover}
+    .banner:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,#210e35aa,transparent 65%);pointer-events:none}
+    .banner-copy{position:absolute;inset:auto 28px 27px;z-index:1;text-align:left}
+    .banner-copy .tag{color:#ffd49b;font-weight:900;font-size:.76rem;letter-spacing:.18em;text-transform:uppercase}
+    .banner-copy h2{font-family:Creepster,Georgia,cursive;font-size:clamp(2rem,5vw,4rem);font-weight:400;margin:7px 0;text-shadow:0 3px 12px #000}
+    .banner-copy p{margin:0;color:#f3e7ff}
+    .spark{position:absolute;color:#ffc15a;font-size:24px;animation:float 4s ease-in-out infinite;z-index:2}.spark.one{top:24px;right:8%;}.spark.two{top:40%;right:4%;animation-delay:1s}.spark.three{top:18%;left:6%;animation-delay:2s}
+    .section-head{text-align:center;padding:0 18px;margin-bottom:20px}
+    .section-head .mini{font-size:.76rem;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--orange)}
+    .section-head h2{font-family:Creepster,Georgia,cursive;font-size:clamp(2.5rem,5vw,3.8rem);font-weight:400;margin:7px 0}
+    .section-head p{color:var(--muted);margin:0}
+    .guide{width:min(100% - 28px,780px);margin:0 auto 72px}
+    .progress{display:flex;gap:8px;margin:25px 0 14px}
+    .progress span{height:4px;flex:1;background:#40304e;border-radius:99px;transition:background .3s,box-shadow .3s}
+    .progress span.active{background:var(--orange);box-shadow:0 0 12px #ff7a1870}
+    .carousel-shell{overflow:hidden;border-radius:24px;touch-action:pan-y}
+    .slides{display:flex;transition:transform .48s cubic-bezier(.2,.8,.2,1);will-change:transform}
+    .slide{min-width:100%;padding:clamp(18px,4vw,30px);background:linear-gradient(145deg,#241632,#171020);border:1px solid #50365f;border-radius:24px;box-shadow:0 20px 55px #0004}
+    .step-label{display:flex;align-items:center;gap:10px;color:#ffbd71;font-weight:900;letter-spacing:.13em;text-transform:uppercase;font-size:.78rem}
+    .step-number{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:#ff7a181e;border:1px solid #ff7a186e;font-size:1rem;color:#ffc15a}
+    .slide h3{font-size:clamp(1.35rem,4vw,1.8rem);margin:16px 0 8px}
+    .slide p{color:var(--muted);line-height:1.7;margin:0 0 18px}
+    .step-art{height:clamp(165px,34vw,250px);border-radius:17px;overflow:hidden;margin:18px 0;background:#100a1b;border:1px solid #50365f;position:relative;display:grid;place-items:center}
+    .step-art img{width:100%;height:100%;object-fit:cover;display:block}
+    .art-placeholder{padding:24px;text-align:center;color:#e9d7ff}
+    .art-placeholder .emoji{font-size:3.5rem;display:block;margin-bottom:12px}
+    .art-placeholder strong{font-size:1.1rem}
+    .art-placeholder small{display:block;color:#bca9d0;margin-top:7px}
+    .btn{border:0;border-radius:13px;padding:13px 19px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font:900 .95rem Nunito,sans-serif;text-decoration:none;cursor:pointer;transition:transform .2s,filter .2s,box-shadow .2s}
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+    .btn:active{transform:translateY(0) scale(.98)}
+    .btn-primary{background:linear-gradient(135deg,#ff9a2e,#ff681e);color:#241020;box-shadow:0 8px 24px #ff7a1833}
+    .btn-secondary{background:#30213e;color:#f8edff;border:1px solid #60476e}
+    .btn:focus-visible,input:focus-visible{outline:3px solid #ffc15a;outline-offset:3px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:18px 0}
+    label{display:block;font-size:.83rem;font-weight:900;margin-bottom:7px;color:#f4e7ff}
+    input{width:100%;background:#100a1b;border:1px solid #594168;color:white;border-radius:12px;padding:13px 14px;font:600 1rem Nunito,sans-serif}
+    input::placeholder{color:#8e7b9e}
+    .privacy{font-size:.78rem!important;color:#bca9d0!important;background:#100a1b88;padding:11px 13px;border-radius:10px;border-left:3px solid var(--purple)}
+    .controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:15px}
+    .counter{font-size:.83rem;color:#bca9d0;font-weight:900}
+    .dots{display:flex;justify-content:center;gap:9px;margin-top:18px}
+    .dots button{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:#5b4669;cursor:pointer;transition:all .25s}
+    .dots button.active{width:25px;border-radius:9px;background:var(--orange)}
+    .reward{display:none;text-align:center;margin:25px 0 0;padding:24px;border:1px solid #7a583b;background:linear-gradient(140deg,#2b1b30,#201322);border-radius:20px;animation:rise .45s both}
+    .reward.show{display:block}
+    .reward .icon{font-size:2.7rem}
+    .reward h3{font-family:Creepster,Georgia,cursive;font-size:2.3rem;font-weight:400;margin:8px 0}
+    .reward p{color:var(--muted);line-height:1.6}
+    footer{text-align:center;color:#887795;padding:0 20px 30px;font-size:.8rem}
+    .footer-mark{color:#ffb46b;font-weight:900}
+    .toast{min-height:1.2em;color:#ffb7a6;font-size:.85rem;margin:9px 0 0}
+    @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(10deg)}}
+    @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 12px var(--orange)}50%{opacity:.45;box-shadow:0 0 3px var(--orange)}}
+    @keyframes flicker{0%,94%,97%,100%{filter:brightness(1)}95%,98%{filter:brightness(.8)}}
+    @media(max-width:560px){header{padding-top:25px}.banner-wrap{margin-bottom:38px}.banner{border-radius:18px}.banner-copy{inset:auto 18px 19px}.form-grid{grid-template-columns:1fr}.slide{padding:18px}.controls .btn{padding:12px 14px}.step-art{height:175px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <div class="topbar"><span class="dot"></span> Halloween event guide <span class="dot"></span></div>
+  <header>
+    <span class="eyebrow">🎃 The spooky season starts here</span>
+    <h1>Roblox Halloween<br>Reward Guide</h1>
+    <p class="intro">Ready to unlock your Halloween reward? Follow the steps below, take your time, and make sure you complete each requirement.</p>
+  </header>
+
+  <section class="banner-wrap" aria-label="Halloween banner">
+    <div class="banner" role="img" aria-label="Spooky Halloween night with pumpkins and glowing lights">
+      <span class="spark one">✦</span><span class="spark two">✧</span><span class="spark three">✦</span>
+      <div class="banner-copy"><div class="tag">Limited-time guide · Halloween</div><h2>Enter if you dare...</h2><p>Your next adventure is only three steps away.</p></div>
+    </div>
+  </section>
+
+  <section class="section-head">
+    <div class="mini">Your quest begins</div>
+    <h2>Get Started Guide</h2>
+    <p>Swipe the cards or use the arrows to move through each step.</p>
+  </section>
+
+  <main class="guide">
+    <div class="progress" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
+    <div class="carousel-shell" id="carousel" aria-live="polite">
+      <div class="slides" id="slides">
+        <article class="slide">
+          <div class="step-label"><span class="step-number">01</span> Step 1 of 3</div>
+          <h3>Follow on TikTok</h3>
+          <p>Follow <strong id="creatorName">@YourTikTokUsername</strong> on TikTok to complete the first requirement.</p>
+          <div class="step-art">
+            <div class="art-placeholder"><span class="emoji">🎃</span><strong>Follow the creator</strong><small>Replace this card with your TikTok profile screenshot.</small></div>
+          </div>
+          <a class="btn btn-primary" id="tiktokLink" href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">Open TikTok ↗</a>
+        </article>
+
+        <article class="slide">
+          <div class="step-label"><span class="step-number">02</span> Step 2 of 3</div>
+          <h3>Enter your details</h3>
+          <p>Enter your Roblox username and account creation date below.</p>
+          <form id="detailsForm" novalidate>
+            <div class="form-grid">
+              <div><label for="robloxUsername">Roblox username</label><input id="robloxUsername" name="robloxUsername" type="text" autocomplete="off" placeholder="Your Roblox username" maxlength="20" required></div>
+              <div><label for="creationDate">Account creation date</label><input id="creationDate" name="creationDate" type="date" required></div>
+            </div>
+            <p class="privacy">🔒 This demo form does not send or save your details. Never enter your password, verification code, or other login information.</p>
+            <p class="toast" id="formMessage" role="status"></p>
+            <button class="btn btn-primary" type="submit">Continue to Step 3 →</button>
+          </form>
+        </article>
+
+        <article class="slide">
+          <div class="step-label"><span class="step-number">03</span> Step 3 of 3</div>
+          <h3>You're at the final step!</h3>
+          <div class="step-art"><div class="art-placeholder"><span class="emoji">🦇</span><strong>One last thing...</strong><small>Make sure you've completed the necessary requirements.</small></div></div>
+          <p>You filled out the necessary requirements! Press the button below to continue to your reward.</p>
+          <button class="btn btn-primary" id="showReward" type="button">Reveal reward link ✨</button>
+          <p class="privacy" style="margin-top:14px">The reward button opens the destination configured by the site owner. This guide is not an official Roblox website.</p>
+        </article>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="btn btn-secondary" id="prev" type="button">← Back</button>
+      <span class="counter" id="counter">STEP 1 / 3</span>
+      <button class="btn btn-primary" id="next" type="button">Next →</button>
+    </div>
+    <div class="dots" aria-label="Choose guide step"><button class="active" data-step="0" aria-label="Go to step 1"></button><button data-step="1" aria-label="Go to step 2"></button><button data-step="2" aria-label="Go to step 3"></button></div>
+    <section class="reward" id="rewardPanel" aria-live="polite">
+      <div class="icon">🎃✨</div><h3>Your reward awaits!</h3>
+      <p>Tap below to open the reward destination.</p>
+      <a class="btn btn-primary" id="rewardLink" href="https://www.roblox.com/" target="_blank" rel="noopener noreferrer">Continue to reward ↗</a>
+    </section>
+  </main>
+  <footer><p>Fan-made guide · Not affiliated with or endorsed by Roblox Corporation.</p><p class="footer-mark">Have a spooky-good Halloween! 🕸️</p></footer>
+
+  <script>
+    // SITE OWNER SETTINGS — personalize these values before publishing.
+    const TIKTOK_USERNAME = "@YourTikTokUsername";
+    const TIKTOK_URL = "https://www.tiktok.com/";
+    const REWARD_URL = "https://www.roblox.com/";
+
+    document.getElementById("creatorName").textContent = TIKTOK_USERNAME;
+    document.getElementById("tiktokLink").href = TIKTOK_URL;
+    document.getElementById("rewardLink").href = REWARD_URL;
+
+    const slides = document.getElementById("slides");
+    const progress = [...document.querySelectorAll(".progress span")];
+    const dots = [...document.querySelectorAll(".dots button")];
+    const counter = document.getElementById("counter");
+    const prev = document.getElementById("prev");
+    const next = document.getElementById("next");
+    const rewardPanel = document.getElementById("rewardPanel");
+    let current = 0;
+
+    function goToStep(index) {
+      current = Math.max(0, Math.min(2, index));
+      slides.style.transform = "translateX(-" + (current * 100) + "%)";
+      progress.forEach((bar, i) => bar.classList.toggle("active", i <= current));
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === current);
+        dot.setAttribute("aria-current", i === current ? "step" : "false");
+      });
+      counter.textContent = "STEP " + (current + 1) + " / 3";
+      prev.disabled = current === 0;
+      prev.style.opacity = current === 0 ? ".45" : "1";
+      next.textContent = current === 2 ? "Step 3 ✓" : "Next →";
+      if (current !== 2) rewardPanel.classList.remove("show");
+    }
+    prev.addEventListener("click", () => goToStep(current - 1));
+    next.addEventListener("click", () => goToStep(current === 2 ? 2 : current + 1));
+    dots.forEach(dot => dot.addEventListener("click", () => goToStep(Number(dot.dataset.step))));
+
+    // Touch swipe support for phones and tablets.
+    let startX = 0, startY = 0;
+    const carousel = document.getElementById("carousel");
+    carousel.addEventListener("touchstart", e => {
+      startX = e.changedTouches[0].clientX;
+      startY = e.changedTouches[0].clientY;
+    }, {passive:true});
+    carousel.addEventListener("touchend", e => {
+      const dx = e.changedTouches[0].clientX - startX;
+      const dy = e.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy)) goToStep(current + (dx < 0 ? 1 : -1));
+    }, {passive:true});
+
+    document.getElementById("detailsForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const username = document.getElementById("robloxUsername").value.trim();
+      const date = document.getElementById("creationDate").value;
+      const message = document.getElementById("formMessage");
+      if (!username || !date) {
+        message.textContent = "Please fill in both fields to continue.";
+        return;
+      }
+      if (date > new Date().toISOString().slice(0,10)) {
+        message.textContent = "Please enter a date that is not in the future.";
+        return;
+      }
+      message.textContent = "";
+      goToStep(2);
+      document.getElementById("carousel").scrollIntoView({behavior:"smooth",block:"center"});
+    });
+
+    document.getElementById("showReward").addEventListener("click", () => {
+      rewardPanel.classList.add("show");
+      rewardPanel.scrollIntoView({behavior:"smooth",block:"center"});
+    });
+    goToStep(0);
+  </script>
+</body>
+</html>
